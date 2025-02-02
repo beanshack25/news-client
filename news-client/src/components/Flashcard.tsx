@@ -26,6 +26,8 @@ export default function Flashcard({
         <a
           href={card.link}
           className="cursor-pointer bg-slate-400 rounded-lg py-1.5 px-6 text-white font-semibold"
+          target="_blank"
+          rel="noreferrer"
         >
           View Article
         </a>
