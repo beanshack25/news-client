@@ -134,6 +134,7 @@ function App() {
         const nodes = data.nodes;
 
         setFuture(undefined);
+        setFutureShown(true);
 
         setScrolls((prev) => {
           const next = [...prev];
