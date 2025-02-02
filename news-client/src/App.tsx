@@ -13,7 +13,6 @@ function App() {
 
   const colors = ["#FCE4EC", "#FFF9C4", "#D0EBFF", "#D8F3DC", "#FFD8B1"];
 
-
   useEffect(() => {
     setLoading(true);
     const endpoint = `http://localhost:5000/api/start`;
@@ -164,6 +163,7 @@ function App() {
 
   const [future, setFuture] = useState<string | undefined>(undefined);
   const [futureShown, setFutureShown] = useState(false);
+  const [hasOpened, setHasOpened] = useState(false);
 
   const showFuture = useCallback(() => {
     setFutureShown(true);
@@ -246,19 +246,21 @@ function App() {
           ))}
         </div>
       </div>
-      <button
-        className="absolute right-8 top-8 bg-emerald-600 cursor-pointer rounded-lg py-1.5 px-6 text-white font-semibold"
-        onClick={showFuture}
-      >
-        Future Prediction
-      </button>
+      {hasOpened && (
+        <button
+          className="absolute right-8 top-8 bg-emerald-600 cursor-pointer rounded-lg py-1.5 px-6 text-white font-semibold"
+          onClick={showFuture}
+        >
+          Glimpse into the future
+        </button>
+      )}
       {futureShown && (
         <div className="absolute w-full h-full bg-black/15 flex items-center justify-center">
           {future ? (
             <div className="bg-white p-4 pb-8 rounded-xl w-card h-card flex flex-col">
               <div className="flex mb-5 items-center justify-between">
-                <h1 className="font-semibold text-xl ml-4">
-                  From what has happened, you may see...
+                <h1 className="font-semibold text-lg ml-4">
+                  A Glimpse into the Future...
                 </h1>
                 <button
                   className="h-10 w-8"
