@@ -104,6 +104,10 @@ function App() {
             })),
           ];
         });
+
+        setScrollAmounts(() => {
+          return [0];
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -130,14 +134,22 @@ function App() {
   const atStart = useMemo(() => scrollAmounts.length === 1, [scrollAmounts]);
 
   const scrollUp = useCallback(() => {
+    console.log("SCROLLUP");
+    console.log(scrollAmounts);
+    console.log(scrolls);
+    console.log(currentScroll);
     setScrollAmounts((prev) => {
       const next = [...prev];
       next[currentScroll] = Math.max(next[currentScroll] - 1, 0);
       return next;
     });
-  }, [currentScroll]);
+  }, [currentScroll, scrollAmounts, scrolls]);
 
   const scrollDown = useCallback(() => {
+    console.log("SCROLLDOWN");
+    console.log(scrollAmounts);
+    console.log(scrolls);
+    console.log(currentScroll);
     setScrollAmounts((prev) => {
       const next = [...prev];
       next[currentScroll] = Math.min(
@@ -146,13 +158,14 @@ function App() {
       );
       return next;
     });
-  }, [finalCards, currentScroll]);
+  }, [scrollAmounts, scrolls, currentScroll, finalCards.length]);
 
   const scrollLeft = useCallback(() => {
     setCurrentScroll((prev) => Math.max(prev - 1, 0));
   }, []);
 
   const scrollRight = useCallback(async (url: string) => {
+    console.log("SCROLLRIGHT");
     const encodedUrl = encodeURIComponent(url);
     const endpoint = `http://localhost:5000/api/prevents?url=${encodedUrl}`;
 
@@ -169,7 +182,6 @@ function App() {
       }
 
       const data = await response.json();
-
       console.log(data);
 
       const nodes = data.nodes;
@@ -183,6 +195,12 @@ function App() {
             link: node.url,
           }))
         );
+        return next;
+      });
+
+      setScrollAmounts((prev) => {
+        const next = [...prev];
+        next.push(0);
         return next;
       });
 
