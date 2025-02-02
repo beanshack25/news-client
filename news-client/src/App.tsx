@@ -73,11 +73,7 @@ function App() {
   const [currentScroll, setCurrentScroll] = useState(0);
 
   useEffect(() => {
-    const url =
-      "https://edition.cnn.com/2025/02/01/politics/mexico-canada-china-tariffs-trump/index.html";
-    const endpoint = `http://localhost:5000/api/start?${new URLSearchParams({
-      url,
-    })}`;
+    const endpoint = `http://localhost:5000/api/start`;
 
     fetch(endpoint, {
       method: "GET",
