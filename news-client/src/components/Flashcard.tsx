@@ -30,10 +30,13 @@ export default function Flashcard({
           View Article
         </a>
         <button
-          className="cursor-pointer bg-sky-500 rounded-lg py-1.5 px-6 text-white font-semibold"
+          className="cursor-pointer bg-sky-500 rounded-lg py-1.5 pl-6 pr-2 text-white font-semibold flex items-center"
           onClick={() => scrollRight(card.link)}
         >
-          Causalitree {">"}
+          Causalitree
+          <span className="material-symbols-rounded ml-2">
+            keyboard_arrow_right
+          </span>
         </button>
       </div>
     </div>
