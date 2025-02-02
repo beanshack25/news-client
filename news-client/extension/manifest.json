@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "React App Loader",
+    "name": "Causalitree",
     "version": "1.0",
     "description": "Sends URL to backend and opens website on click",
     "permissions": ["activeTab", "scripting", "tabs"],
@@ -11,9 +11,9 @@
     "action": {
       "default_popup": "popup.html",
       "default_icon": {
-        "16": "tree.png",
-        "48": "tree.png",
-        "128": "tree.png"
+        "16": "radial-tree-graphic-graph-infographic-svgrepo-com.svg",
+        "48": "radial-tree-graphic-graph-infographic-svgrepo-com.svg",
+        "128": "radial-tree-graphic-graph-infographic-svgrepo-com.svg"
       }
     }
   }
