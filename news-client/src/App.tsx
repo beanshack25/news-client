@@ -6,7 +6,8 @@ import ScrollButton from "./components/ScrollButton.tsx";
 
 function App() {
   const [scrollAmounts, setScrollAmounts] = useState<number[]>([0]);
-  const [scrolls, setScrolls] = useState<Card[][]>([[]
+  const [scrolls, setScrolls] = useState<Card[][]>([
+    [],
     // [
     //   {
     //     title:
@@ -73,8 +74,9 @@ function App() {
 
   useEffect(() => {
     const url = "https://www.bbc.co.uk/news/articles/cdrye506z1go";
-    const encodedUrl = encodeURIComponent(url);
-    const endpoint = `http://localhost:5000/api/start?url=${encodedUrl}`;
+    const endpoint = `http://localhost:5000/api/start?${new URLSearchParams({
+      url,
+    })}`;
 
     fetch(endpoint, {
       method: "GET",
@@ -89,26 +91,23 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        console.log(data)
+        console.log(data);
 
         const nodes = data.nodes;
 
-        setScrolls((prev) => {
-          const next = [...prev];
-          next.push(
+        setScrolls(() => {
+          return [
             nodes.map((node) => ({
               title: node.title,
               content: node.content,
               link: node.url,
-            }))
-          );
-          return next;
+            })),
+          ];
         });
       })
       .catch((error) => {
         console.error(error);
       });
-
   }, []);
 
   const finalScrollAmount = useMemo(
@@ -171,7 +170,7 @@ function App() {
 
       const data = await response.json();
 
-      console.log(data)
+      console.log(data);
 
       const nodes = data.nodes;
 
@@ -188,7 +187,6 @@ function App() {
       });
 
       setCurrentScroll((prev) => prev + 1);
-
     } catch (error) {
       console.error(error);
     }
