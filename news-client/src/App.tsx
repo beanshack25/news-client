@@ -6,74 +6,18 @@ import ScrollButton from "./components/ScrollButton.tsx";
 
 function App() {
   const [scrollAmounts, setScrollAmounts] = useState<number[]>([0]);
-  const [scrolls, setScrolls] = useState<Card[][]>([
-    [],
-    // [
-    //   {
-    //     title:
-    //       "What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long",
-    //     content:
-    //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum odio id mi elementum, sit amet maximus lorem cursus. Fusce maximus diam a tincidunt pharetra. Morbi nec nisi leo. Vestibulum tincidunt accumsan commodo. Nunc tincidunt quam interdum venenatis vestibulum. Quisque nec sapien elementum erat pulvinar ornare. Phasellus rutrum ultricies felis et rhoncus. Fusce tempor sapien non sapien hendrerit, non pulvinar nulla dapibus. Donec eleifend luctus urna, ac consequat dui tempor a.\nNulla eget dictum dui. Duis lorem lorem, egestas et ullamcorper quis, tincidunt vitae lorem. In hac habitasse platea dictumst. Praesent finibus nec ligula in fringilla. Duis at placerat lorem, vel molestie libero. Proin vehicula elit arcu, at maximus enim maximus eget. Praesent interdum ultrices nisi venenatis dictum.\nQuisque vestibulum odio eget rutrum rhoncus. Integer sodales sit amet lectus id scelerisque. Vivamus viverra lobortis semper. Vivamus viverra suscipit nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam porttitor rutrum euismod. Phasellus sollicitudin maximus nunc, in molestie tortor consectetur ut. Maecenas quis odio facilisis, pulvinar elit nec, consectetur metus.\nInterdum et malesuada fames ac ante ipsum primis in faucibus. Mauris mattis dignissim rutrum. Integer et tincidunt dui. Pellentesque rhoncus eros quis feugiat rhoncus. Nam consectetur mi et enim ultricies vulputate. Maecenas imperdiet, turpis ac tempus tincidunt, nisl enim ornare odio, nec fringilla nulla ante nec ipsum. Curabitur nec libero nec nisi commodo lobortis eget sit amet neque. Curabitur eu tincidunt lectus.\nNullam pulvinar posuere lobortis. Duis nec congue sem. Curabitur laoreet venenatis diam, eget dignissim lectus luctus nec. Pellentesque malesuada enim vel orci laoreet commodo. Etiam tincidunt mauris tincidunt convallis vulputate. Integer odio dolor, varius a nulla venenatis, tristique auctor tortor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed quis tortor ac tellus interdum condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean libero justo, tempus eget sem a, tempus imperdiet justo. Aenean sit amet tincidunt ex. Etiam bibendum tincidunt ligula, ac tincidunt erat. Nunc id aliquam eros, in scelerisque nunc. Pellentesque at mi libero. Donec eleifend faucibus nulla sodales consectetur.",
-    //     link: "https://example.com",
-    //   },
-    //   {
-    //     title:
-    //       "What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long",
-    //     content:
-    //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum odio id mi elementum, sit amet maximus lorem cursus. Fusce maximus diam a tincidunt pharetra. Morbi nec nisi leo. Vestibulum tincidunt accumsan commodo. Nunc tincidunt quam interdum venenatis vestibulum. Quisque nec sapien elementum erat pulvinar ornare. Phasellus rutrum ultricies felis et rhoncus. Fusce tempor sapien non sapien hendrerit, non pulvinar nulla dapibus. Donec eleifend luctus urna, ac consequat dui tempor a.\nNulla eget dictum dui. Duis lorem lorem, egestas et ullamcorper quis, tincidunt vitae lorem. In hac habitasse platea dictumst. Praesent finibus nec ligula in fringilla. Duis at placerat lorem, vel molestie libero. Proin vehicula elit arcu, at maximus enim maximus eget. Praesent interdum ultrices nisi venenatis dictum.\nQuisque vestibulum odio eget rutrum rhoncus. Integer sodales sit amet lectus id scelerisque. Vivamus viverra lobortis semper. Vivamus viverra suscipit nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam porttitor rutrum euismod. Phasellus sollicitudin maximus nunc, in molestie tortor consectetur ut. Maecenas quis odio facilisis, pulvinar elit nec, consectetur metus.\nInterdum et malesuada fames ac ante ipsum primis in faucibus. Mauris mattis dignissim rutrum. Integer et tincidunt dui. Pellentesque rhoncus eros quis feugiat rhoncus. Nam consectetur mi et enim ultricies vulputate. Maecenas imperdiet, turpis ac tempus tincidunt, nisl enim ornare odio, nec fringilla nulla ante nec ipsum. Curabitur nec libero nec nisi commodo lobortis eget sit amet neque. Curabitur eu tincidunt lectus.\nNullam pulvinar posuere lobortis. Duis nec congue sem. Curabitur laoreet venenatis diam, eget dignissim lectus luctus nec. Pellentesque malesuada enim vel orci laoreet commodo. Etiam tincidunt mauris tincidunt convallis vulputate. Integer odio dolor, varius a nulla venenatis, tristique auctor tortor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed quis tortor ac tellus interdum condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean libero justo, tempus eget sem a, tempus imperdiet justo. Aenean sit amet tincidunt ex. Etiam bibendum tincidunt ligula, ac tincidunt erat. Nunc id aliquam eros, in scelerisque nunc. Pellentesque at mi libero. Donec eleifend faucibus nulla sodales consectetur.",
-    //     link: "https://example.com",
-    //   },
-    //   {
-    //     title:
-    //       "What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long",
-    //     content:
-    //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum odio id mi elementum, sit amet maximus lorem cursus. Fusce maximus diam a tincidunt pharetra. Morbi nec nisi leo. Vestibulum tincidunt accumsan commodo. Nunc tincidunt quam interdum venenatis vestibulum. Quisque nec sapien elementum erat pulvinar ornare. Phasellus rutrum ultricies felis et rhoncus. Fusce tempor sapien non sapien hendrerit, non pulvinar nulla dapibus. Donec eleifend luctus urna, ac consequat dui tempor a.\nNulla eget dictum dui. Duis lorem lorem, egestas et ullamcorper quis, tincidunt vitae lorem. In hac habitasse platea dictumst. Praesent finibus nec ligula in fringilla. Duis at placerat lorem, vel molestie libero. Proin vehicula elit arcu, at maximus enim maximus eget. Praesent interdum ultrices nisi venenatis dictum.\nQuisque vestibulum odio eget rutrum rhoncus. Integer sodales sit amet lectus id scelerisque. Vivamus viverra lobortis semper. Vivamus viverra suscipit nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam porttitor rutrum euismod. Phasellus sollicitudin maximus nunc, in molestie tortor consectetur ut. Maecenas quis odio facilisis, pulvinar elit nec, consectetur metus.\nInterdum et malesuada fames ac ante ipsum primis in faucibus. Mauris mattis dignissim rutrum. Integer et tincidunt dui. Pellentesque rhoncus eros quis feugiat rhoncus. Nam consectetur mi et enim ultricies vulputate. Maecenas imperdiet, turpis ac tempus tincidunt, nisl enim ornare odio, nec fringilla nulla ante nec ipsum. Curabitur nec libero nec nisi commodo lobortis eget sit amet neque. Curabitur eu tincidunt lectus.\nNullam pulvinar posuere lobortis. Duis nec congue sem. Curabitur laoreet venenatis diam, eget dignissim lectus luctus nec. Pellentesque malesuada enim vel orci laoreet commodo. Etiam tincidunt mauris tincidunt convallis vulputate. Integer odio dolor, varius a nulla venenatis, tristique auctor tortor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed quis tortor ac tellus interdum condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean libero justo, tempus eget sem a, tempus imperdiet justo. Aenean sit amet tincidunt ex. Etiam bibendum tincidunt ligula, ac tincidunt erat. Nunc id aliquam eros, in scelerisque nunc. Pellentesque at mi libero. Donec eleifend faucibus nulla sodales consectetur.",
-    //     link: "https://example.com",
-    //   },
-    //   {
-    //     title:
-    //       "What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long",
-    //     content:
-    //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum odio id mi elementum, sit amet maximus lorem cursus. Fusce maximus diam a tincidunt pharetra. Morbi nec nisi leo. Vestibulum tincidunt accumsan commodo. Nunc tincidunt quam interdum venenatis vestibulum. Quisque nec sapien elementum erat pulvinar ornare. Phasellus rutrum ultricies felis et rhoncus. Fusce tempor sapien non sapien hendrerit, non pulvinar nulla dapibus. Donec eleifend luctus urna, ac consequat dui tempor a.\nNulla eget dictum dui. Duis lorem lorem, egestas et ullamcorper quis, tincidunt vitae lorem. In hac habitasse platea dictumst. Praesent finibus nec ligula in fringilla. Duis at placerat lorem, vel molestie libero. Proin vehicula elit arcu, at maximus enim maximus eget. Praesent interdum ultrices nisi venenatis dictum.\nQuisque vestibulum odio eget rutrum rhoncus. Integer sodales sit amet lectus id scelerisque. Vivamus viverra lobortis semper. Vivamus viverra suscipit nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam porttitor rutrum euismod. Phasellus sollicitudin maximus nunc, in molestie tortor consectetur ut. Maecenas quis odio facilisis, pulvinar elit nec, consectetur metus.\nInterdum et malesuada fames ac ante ipsum primis in faucibus. Mauris mattis dignissim rutrum. Integer et tincidunt dui. Pellentesque rhoncus eros quis feugiat rhoncus. Nam consectetur mi et enim ultricies vulputate. Maecenas imperdiet, turpis ac tempus tincidunt, nisl enim ornare odio, nec fringilla nulla ante nec ipsum. Curabitur nec libero nec nisi commodo lobortis eget sit amet neque. Curabitur eu tincidunt lectus.\nNullam pulvinar posuere lobortis. Duis nec congue sem. Curabitur laoreet venenatis diam, eget dignissim lectus luctus nec. Pellentesque malesuada enim vel orci laoreet commodo. Etiam tincidunt mauris tincidunt convallis vulputate. Integer odio dolor, varius a nulla venenatis, tristique auctor tortor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed quis tortor ac tellus interdum condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean libero justo, tempus eget sem a, tempus imperdiet justo. Aenean sit amet tincidunt ex. Etiam bibendum tincidunt ligula, ac tincidunt erat. Nunc id aliquam eros, in scelerisque nunc. Pellentesque at mi libero. Donec eleifend faucibus nulla sodales consectetur.",
-    //     link: "https://example.com",
-    //   },
-    // ],
-    // [
-    //   {
-    //     title:
-    //       "What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long",
-    //     content:
-    //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum odio id mi elementum, sit amet maximus lorem cursus. Fusce maximus diam a tincidunt pharetra. Morbi nec nisi leo. Vestibulum tincidunt accumsan commodo. Nunc tincidunt quam interdum venenatis vestibulum. Quisque nec sapien elementum erat pulvinar ornare. Phasellus rutrum ultricies felis et rhoncus. Fusce tempor sapien non sapien hendrerit, non pulvinar nulla dapibus. Donec eleifend luctus urna, ac consequat dui tempor a.\nNulla eget dictum dui. Duis lorem lorem, egestas et ullamcorper quis, tincidunt vitae lorem. In hac habitasse platea dictumst. Praesent finibus nec ligula in fringilla. Duis at placerat lorem, vel molestie libero. Proin vehicula elit arcu, at maximus enim maximus eget. Praesent interdum ultrices nisi venenatis dictum.\nQuisque vestibulum odio eget rutrum rhoncus. Integer sodales sit amet lectus id scelerisque. Vivamus viverra lobortis semper. Vivamus viverra suscipit nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam porttitor rutrum euismod. Phasellus sollicitudin maximus nunc, in molestie tortor consectetur ut. Maecenas quis odio facilisis, pulvinar elit nec, consectetur metus.\nInterdum et malesuada fames ac ante ipsum primis in faucibus. Mauris mattis dignissim rutrum. Integer et tincidunt dui. Pellentesque rhoncus eros quis feugiat rhoncus. Nam consectetur mi et enim ultricies vulputate. Maecenas imperdiet, turpis ac tempus tincidunt, nisl enim ornare odio, nec fringilla nulla ante nec ipsum. Curabitur nec libero nec nisi commodo lobortis eget sit amet neque. Curabitur eu tincidunt lectus.\nNullam pulvinar posuere lobortis. Duis nec congue sem. Curabitur laoreet venenatis diam, eget dignissim lectus luctus nec. Pellentesque malesuada enim vel orci laoreet commodo. Etiam tincidunt mauris tincidunt convallis vulputate. Integer odio dolor, varius a nulla venenatis, tristique auctor tortor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed quis tortor ac tellus interdum condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean libero justo, tempus eget sem a, tempus imperdiet justo. Aenean sit amet tincidunt ex. Etiam bibendum tincidunt ligula, ac tincidunt erat. Nunc id aliquam eros, in scelerisque nunc. Pellentesque at mi libero. Donec eleifend faucibus nulla sodales consectetur.",
-    //     link: "https://example.com",
-    //   },
-    //   {
-    //     title:
-    //       "What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long",
-    //     content:
-    //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum odio id mi elementum, sit amet maximus lorem cursus. Fusce maximus diam a tincidunt pharetra. Morbi nec nisi leo. Vestibulum tincidunt accumsan commodo. Nunc tincidunt quam interdum venenatis vestibulum. Quisque nec sapien elementum erat pulvinar ornare. Phasellus rutrum ultricies felis et rhoncus. Fusce tempor sapien non sapien hendrerit, non pulvinar nulla dapibus. Donec eleifend luctus urna, ac consequat dui tempor a.\nNulla eget dictum dui. Duis lorem lorem, egestas et ullamcorper quis, tincidunt vitae lorem. In hac habitasse platea dictumst. Praesent finibus nec ligula in fringilla. Duis at placerat lorem, vel molestie libero. Proin vehicula elit arcu, at maximus enim maximus eget. Praesent interdum ultrices nisi venenatis dictum.\nQuisque vestibulum odio eget rutrum rhoncus. Integer sodales sit amet lectus id scelerisque. Vivamus viverra lobortis semper. Vivamus viverra suscipit nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam porttitor rutrum euismod. Phasellus sollicitudin maximus nunc, in molestie tortor consectetur ut. Maecenas quis odio facilisis, pulvinar elit nec, consectetur metus.\nInterdum et malesuada fames ac ante ipsum primis in faucibus. Mauris mattis dignissim rutrum. Integer et tincidunt dui. Pellentesque rhoncus eros quis feugiat rhoncus. Nam consectetur mi et enim ultricies vulputate. Maecenas imperdiet, turpis ac tempus tincidunt, nisl enim ornare odio, nec fringilla nulla ante nec ipsum. Curabitur nec libero nec nisi commodo lobortis eget sit amet neque. Curabitur eu tincidunt lectus.\nNullam pulvinar posuere lobortis. Duis nec congue sem. Curabitur laoreet venenatis diam, eget dignissim lectus luctus nec. Pellentesque malesuada enim vel orci laoreet commodo. Etiam tincidunt mauris tincidunt convallis vulputate. Integer odio dolor, varius a nulla venenatis, tristique auctor tortor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed quis tortor ac tellus interdum condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean libero justo, tempus eget sem a, tempus imperdiet justo. Aenean sit amet tincidunt ex. Etiam bibendum tincidunt ligula, ac tincidunt erat. Nunc id aliquam eros, in scelerisque nunc. Pellentesque at mi libero. Donec eleifend faucibus nulla sodales consectetur.",
-    //     link: "https://example.com",
-    //   },
-    //   {
-    //     title:
-    //       "What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long",
-    //     content:
-    //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum odio id mi elementum, sit amet maximus lorem cursus. Fusce maximus diam a tincidunt pharetra. Morbi nec nisi leo. Vestibulum tincidunt accumsan commodo. Nunc tincidunt quam interdum venenatis vestibulum. Quisque nec sapien elementum erat pulvinar ornare. Phasellus rutrum ultricies felis et rhoncus. Fusce tempor sapien non sapien hendrerit, non pulvinar nulla dapibus. Donec eleifend luctus urna, ac consequat dui tempor a.\nNulla eget dictum dui. Duis lorem lorem, egestas et ullamcorper quis, tincidunt vitae lorem. In hac habitasse platea dictumst. Praesent finibus nec ligula in fringilla. Duis at placerat lorem, vel molestie libero. Proin vehicula elit arcu, at maximus enim maximus eget. Praesent interdum ultrices nisi venenatis dictum.\nQuisque vestibulum odio eget rutrum rhoncus. Integer sodales sit amet lectus id scelerisque. Vivamus viverra lobortis semper. Vivamus viverra suscipit nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam porttitor rutrum euismod. Phasellus sollicitudin maximus nunc, in molestie tortor consectetur ut. Maecenas quis odio facilisis, pulvinar elit nec, consectetur metus.\nInterdum et malesuada fames ac ante ipsum primis in faucibus. Mauris mattis dignissim rutrum. Integer et tincidunt dui. Pellentesque rhoncus eros quis feugiat rhoncus. Nam consectetur mi et enim ultricies vulputate. Maecenas imperdiet, turpis ac tempus tincidunt, nisl enim ornare odio, nec fringilla nulla ante nec ipsum. Curabitur nec libero nec nisi commodo lobortis eget sit amet neque. Curabitur eu tincidunt lectus.\nNullam pulvinar posuere lobortis. Duis nec congue sem. Curabitur laoreet venenatis diam, eget dignissim lectus luctus nec. Pellentesque malesuada enim vel orci laoreet commodo. Etiam tincidunt mauris tincidunt convallis vulputate. Integer odio dolor, varius a nulla venenatis, tristique auctor tortor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed quis tortor ac tellus interdum condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean libero justo, tempus eget sem a, tempus imperdiet justo. Aenean sit amet tincidunt ex. Etiam bibendum tincidunt ligula, ac tincidunt erat. Nunc id aliquam eros, in scelerisque nunc. Pellentesque at mi libero. Donec eleifend faucibus nulla sodales consectetur.",
-    //     link: "https://example.com",
-    //   },
-    //   {
-    //     title:
-    //       "What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long",
-    //     content:
-    //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum odio id mi elementum, sit amet maximus lorem cursus. Fusce maximus diam a tincidunt pharetra. Morbi nec nisi leo. Vestibulum tincidunt accumsan commodo. Nunc tincidunt quam interdum venenatis vestibulum. Quisque nec sapien elementum erat pulvinar ornare. Phasellus rutrum ultricies felis et rhoncus. Fusce tempor sapien non sapien hendrerit, non pulvinar nulla dapibus. Donec eleifend luctus urna, ac consequat dui tempor a.\nNulla eget dictum dui. Duis lorem lorem, egestas et ullamcorper quis, tincidunt vitae lorem. In hac habitasse platea dictumst. Praesent finibus nec ligula in fringilla. Duis at placerat lorem, vel molestie libero. Proin vehicula elit arcu, at maximus enim maximus eget. Praesent interdum ultrices nisi venenatis dictum.\nQuisque vestibulum odio eget rutrum rhoncus. Integer sodales sit amet lectus id scelerisque. Vivamus viverra lobortis semper. Vivamus viverra suscipit nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam porttitor rutrum euismod. Phasellus sollicitudin maximus nunc, in molestie tortor consectetur ut. Maecenas quis odio facilisis, pulvinar elit nec, consectetur metus.\nInterdum et malesuada fames ac ante ipsum primis in faucibus. Mauris mattis dignissim rutrum. Integer et tincidunt dui. Pellentesque rhoncus eros quis feugiat rhoncus. Nam consectetur mi et enim ultricies vulputate. Maecenas imperdiet, turpis ac tempus tincidunt, nisl enim ornare odio, nec fringilla nulla ante nec ipsum. Curabitur nec libero nec nisi commodo lobortis eget sit amet neque. Curabitur eu tincidunt lectus.\nNullam pulvinar posuere lobortis. Duis nec congue sem. Curabitur laoreet venenatis diam, eget dignissim lectus luctus nec. Pellentesque malesuada enim vel orci laoreet commodo. Etiam tincidunt mauris tincidunt convallis vulputate. Integer odio dolor, varius a nulla venenatis, tristique auctor tortor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed quis tortor ac tellus interdum condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean libero justo, tempus eget sem a, tempus imperdiet justo. Aenean sit amet tincidunt ex. Etiam bibendum tincidunt ligula, ac tincidunt erat. Nunc id aliquam eros, in scelerisque nunc. Pellentesque at mi libero. Donec eleifend faucibus nulla sodales consectetur.",
-    //     link: "https://example.com",
-    //   },
-    // ],
-  ]);
-
+  const [scrolls, setScrolls] = useState<Card[][]>([[]]);
   const [currentScroll, setCurrentScroll] = useState(0);
 
+  // Background colors array
+  const colors = ["#FCE4EC", "#FFF9C4", "#D0EBFF", "#D8F3DC", "#FFD8B1"];
+
   useEffect(() => {
-    const endpoint = `http://localhost:5000/api/start`;
+    const url =
+      "https://edition.cnn.com/2025/02/01/politics/mexico-canada-china-tariffs-trump/index.html";
+    const endpoint = `http://localhost:5000/api/start?${new URLSearchParams({
+      url,
+    })}`;
 
     fetch(endpoint, {
       method: "GET",
@@ -88,23 +32,15 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-
         const nodes = data.nodes;
-
-        setScrolls(() => {
-          return [
-            nodes.map((node) => ({
-              title: node.title,
-              content: node.content,
-              link: node.url,
-            })),
-          ];
-        });
-
-        setScrollAmounts(() => {
-          return [0];
-        });
+        setScrolls([
+          nodes.map((node) => ({
+            title: node.title,
+            content: node.content,
+            link: node.url,
+          })),
+        ]);
+        setScrollAmounts([0]);
       })
       .catch((error) => {
         console.error(error);
@@ -180,7 +116,7 @@ function App() {
         setCurrentScroll((prev) => prev + 1);
         return;
       }
-      console.log("SCROLLRIGHT");
+
       const encodedUrl = encodeURIComponent(url);
       const endpoint = `http://localhost:5000/api/prevents?url=${encodedUrl}`;
 
@@ -197,8 +133,6 @@ function App() {
         }
 
         const data = await response.json();
-        console.log(data);
-
         const nodes = data.nodes;
 
         setScrolls((prev) => {
@@ -228,7 +162,12 @@ function App() {
   );
 
   return (
-    <div className="relative h-full">
+    <div
+      className="relative h-full transition-colors duration-1000 ease-in-out"
+      style={{
+        backgroundColor: colors[currentScroll % colors.length],
+      }}
+    >
       <div className="absolute left-0 top-0 w-full h-full flex flex-col items-center justify-center gap-8">
         <div className="z-10 h-12">
           {!atTop && (
