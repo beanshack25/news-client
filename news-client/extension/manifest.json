@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "React App Loader",
+    "version": "1.0",
+    "description": "Sends URL to backend and opens website on click",
+    "permissions": ["activeTab", "scripting", "tabs"],
+    "host_permissions": ["http://localhost:5000/*"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "tree.png",
+        "48": "tree.png",
+        "128": "tree.png"
+      }
+    }
+  }
+  
