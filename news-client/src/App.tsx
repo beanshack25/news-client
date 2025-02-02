@@ -72,8 +72,15 @@ function App() {
 
   const [currentScroll, setCurrentScroll] = useState(0);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    const endpoint = `http://localhost:5000/api/start`;
+    setLoading(true);
+    const url =
+      "https://edition.cnn.com/2025/02/01/politics/mexico-canada-china-tariffs-trump/index.html";
+    const endpoint = `http://localhost:5000/api/start?${new URLSearchParams({
+      url,
+    })}`;
 
     fetch(endpoint, {
       method: "GET",
@@ -117,7 +124,7 @@ function App() {
   );
 
   const finalCards = useMemo(
-    () => scrolls[currentScroll],
+    () => scrolls[currentScroll] ?? [],
     [scrolls, currentScroll]
   );
 
@@ -201,6 +208,8 @@ function App() {
 
         const nodes = data.nodes;
 
+        setFuture(undefined);
+
         setScrolls((prev) => {
           const next = [...prev];
           next.push(
@@ -226,6 +235,38 @@ function App() {
     },
     [cached]
   );
+
+  const [future, setFuture] = useState<string | undefined>(undefined);
+  const [futureShown, setFutureShown] = useState(false);
+
+  const showFuture = useCallback(() => {
+    setFutureShown(true);
+    if (future !== undefined) {
+      return;
+    }
+    const endpoint = "http://localhost:5000/api/explore-future";
+
+    fetch(endpoint, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+
+        setFuture(data.future);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [future]);
 
   return (
     <div className="relative h-full">
@@ -274,6 +315,40 @@ function App() {
           ))}
         </div>
       </div>
+      <button
+        className="absolute right-8 top-8 bg-emerald-600 cursor-pointer rounded-lg py-1.5 px-6 text-white font-semibold"
+        onClick={showFuture}
+      >
+        Future Prediction
+      </button>
+      {futureShown && (
+        <div className="absolute w-full h-full bg-black/15 flex items-center justify-center">
+          {future ? (
+            <div className="bg-white p-4 pb-8 rounded-xl w-card h-card flex flex-col">
+              <div className="flex mb-5 items-center justify-between">
+                <h1 className="font-semibold text-xl ml-4">
+                  From what has happened, you may see...
+                </h1>
+                <button
+                  className="h-10 w-8"
+                  onClick={() => setFutureShown(false)}
+                >
+                  <span className="text-2xl material-symbols-rounded">
+                    close
+                  </span>
+                </button>
+              </div>
+              <div className="flex-1 overflow-y-auto">
+                {future.split("\n").map((p) => (
+                  <p className="mb-2 px-4">{p}</p>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="loader"></div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
