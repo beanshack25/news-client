@@ -18,9 +18,12 @@ export default function Flashcard({
         ))}
         <div className="absolute bottom-0 w-full h-24 bg-gradient-to-b from-transparent to-slate-100"></div>
       </div>
-      <div className="flex justify-start mt-2">
-        <a className="cursor-pointer bg-sky-600 rounded-lg py-1.5 px-6 text-white font-semibold">
-          View Article {">"}
+      <div className="flex justify-between mt-2">
+        <a className="cursor-pointer bg-slate-400 rounded-lg py-1.5 px-6 text-white font-semibold">
+          View Article
+        </a>
+        <a className="cursor-pointer bg-sky-500 rounded-lg py-1.5 px-6 text-white font-semibold">
+          Causalitree {">"}
         </a>
       </div>
     </div>

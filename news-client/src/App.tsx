@@ -8,7 +8,7 @@ function App() {
     <div className="flex justify-center h-full">
       <Scroll>
         <Flashcard
-          title="Title"
+          title="What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long What happens if the title is extremely long"
           content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum odio id mi elementum, sit amet maximus lorem cursus. Fusce maximus diam a tincidunt pharetra. Morbi nec nisi leo. Vestibulum tincidunt accumsan commodo. Nunc tincidunt quam interdum venenatis vestibulum. Quisque nec sapien elementum erat pulvinar ornare. Phasellus rutrum ultricies felis et rhoncus. Fusce tempor sapien non sapien hendrerit, non pulvinar nulla dapibus. Donec eleifend luctus urna, ac consequat dui tempor a.
 Nulla eget dictum dui. Duis lorem lorem, egestas et ullamcorper quis, tincidunt vitae lorem. In hac habitasse platea dictumst. Praesent finibus nec ligula in fringilla. Duis at placerat lorem, vel molestie libero. Proin vehicula elit arcu, at maximus enim maximus eget. Praesent interdum ultrices nisi venenatis dictum.
 Quisque vestibulum odio eget rutrum rhoncus. Integer sodales sit amet lectus id scelerisque. Vivamus viverra lobortis semper. Vivamus viverra suscipit nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam porttitor rutrum euismod. Phasellus sollicitudin maximus nunc, in molestie tortor consectetur ut. Maecenas quis odio facilisis, pulvinar elit nec, consectetur metus.
