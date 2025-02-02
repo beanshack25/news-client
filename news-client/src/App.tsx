@@ -73,7 +73,8 @@ function App() {
   const [currentScroll, setCurrentScroll] = useState(0);
 
   useEffect(() => {
-    const url = "https://edition.cnn.com/2025/02/01/politics/mexico-canada-china-tariffs-trump/index.html";
+    const url =
+      "https://edition.cnn.com/2025/02/01/politics/mexico-canada-china-tariffs-trump/index.html";
     const endpoint = `http://localhost:5000/api/start?${new URLSearchParams({
       url,
     })}`;
@@ -133,82 +134,102 @@ function App() {
 
   const atStart = useMemo(() => scrollAmounts.length === 1, [scrollAmounts]);
 
+  const [cached, setCached] = useState(false);
+
   const scrollUp = useCallback(() => {
-    console.log("SCROLLUP");
-    console.log(scrollAmounts);
-    console.log(scrolls);
-    console.log(currentScroll);
     setScrollAmounts((prev) => {
       const next = [...prev];
       next[currentScroll] = Math.max(next[currentScroll] - 1, 0);
+      next.splice(currentScroll + 1);
       return next;
     });
-  }, [currentScroll, scrollAmounts, scrolls]);
+    if (currentScroll < scrolls.length - 1) {
+      setScrolls((prev) => {
+        const next = [...prev];
+        next.splice(currentScroll + 1);
+        return next;
+      });
+      setCached(false);
+    }
+  }, [currentScroll, scrolls.length]);
 
   const scrollDown = useCallback(() => {
-    console.log("SCROLLDOWN");
-    console.log(scrollAmounts);
-    console.log(scrolls);
-    console.log(currentScroll);
     setScrollAmounts((prev) => {
       const next = [...prev];
       next[currentScroll] = Math.min(
         next[currentScroll] + 1,
         finalCards.length - 1
       );
+      next.splice(currentScroll + 1);
       return next;
     });
-  }, [scrollAmounts, scrolls, currentScroll, finalCards.length]);
+    if (currentScroll < scrolls.length - 1) {
+      setScrolls((prev) => {
+        const next = [...prev];
+        next.splice(currentScroll + 1);
+        return next;
+      });
+      setCached(false);
+    }
+  }, [currentScroll, finalCards.length, scrolls.length]);
 
   const scrollLeft = useCallback(() => {
     setCurrentScroll((prev) => Math.max(prev - 1, 0));
+    setCached(true);
   }, []);
 
-  const scrollRight = useCallback(async (url: string) => {
-    console.log("SCROLLRIGHT");
-    const encodedUrl = encodeURIComponent(url);
-    const endpoint = `http://localhost:5000/api/prevents?url=${encodedUrl}`;
-
-    try {
-      const response = await fetch(endpoint, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch");
+  const scrollRight = useCallback(
+    async (url: string) => {
+      if (cached) {
+        setCurrentScroll((prev) => prev + 1);
+        return;
       }
+      console.log("SCROLLRIGHT");
+      const encodedUrl = encodeURIComponent(url);
+      const endpoint = `http://localhost:5000/api/prevents?url=${encodedUrl}`;
 
-      const data = await response.json();
-      console.log(data);
+      try {
+        const response = await fetch(endpoint, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-      const nodes = data.nodes;
+        if (!response.ok) {
+          throw new Error("Failed to fetch");
+        }
 
-      setScrolls((prev) => {
-        const next = [...prev];
-        next.push(
-          nodes.map((node) => ({
-            title: node.title,
-            content: node.content,
-            link: node.url,
-          }))
-        );
-        return next;
-      });
+        const data = await response.json();
+        console.log(data);
 
-      setScrollAmounts((prev) => {
-        const next = [...prev];
-        next.push(0);
-        return next;
-      });
+        const nodes = data.nodes;
 
-      setCurrentScroll((prev) => prev + 1);
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
+        setScrolls((prev) => {
+          const next = [...prev];
+          next.push(
+            nodes.map((node) => ({
+              title: node.title,
+              content: node.content,
+              link: node.url,
+            }))
+          );
+          return next;
+        });
+
+        setScrollAmounts((prev) => {
+          const next = [...prev];
+          next.push(0);
+          return next;
+        });
+
+        setCurrentScroll((prev) => prev + 1);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [cached]
+  );
 
   return (
     <div className="relative h-full">
