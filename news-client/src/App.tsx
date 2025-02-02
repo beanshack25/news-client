@@ -132,7 +132,7 @@ function App() {
     [finalScrollAmount, finalCards]
   );
 
-  const atStart = useMemo(() => scrollAmounts.length === 1, [scrollAmounts]);
+  const atStart = useMemo(() => currentScroll === 0, [currentScroll]);
 
   const [cached, setCached] = useState(false);
 
